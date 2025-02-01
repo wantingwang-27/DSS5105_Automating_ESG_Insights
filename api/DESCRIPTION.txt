@@ -1,0 +1,1 @@
+This folder contains the API implementation using Flask or FastAPI. It serves model predictions and key insights.

@@ -1,0 +1,1 @@
+This folder contains the core Python application scripts, including the main orchestrator, configurations, utilities, and modular components for data preprocessing, model development, and ESG scoring.

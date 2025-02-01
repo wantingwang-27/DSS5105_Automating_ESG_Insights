@@ -1,0 +1,1 @@
+This folder stores logs generated during execution for debugging and tracking purposes.
