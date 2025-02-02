@@ -1,0 +1,1 @@
+This folder stores jupyter notebook files. Mostly for data preprocessing and model building
