@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Scores</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="esg-scores-page">
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="logo">🌍 ESG Dashboard</div>
+        <nav>
+            <ul>
+                <li><a href="index.html" class="nav-link" data-page="index">Home</a></li>
+                <li><a href="esg-scores.html" class="active">ESG Scores</a></li>
+                <li><a href="trends.html"><i class="fas fa-line-chart"></i> Trends</a></li>
+                <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+                <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+                <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Search and Filter Section -->
+    <section class="search-filters">
+        <input type="text" id="searchCompany" placeholder="🔍 Search for a company">
+        <select id="filterSector">
+            <option value="all">All Sectors</option>
+            <option value="tech">Technology</option>
+            <option value="finance">Finance</option>
+            <option value="energy">Energy</option>
+        </select>
+        <button onclick="filterResults()">Apply Filters</button>
+    </section>
+
+    <!-- ESG Scores Table -->
+    <section class="esg-table">
+        <h2>Company ESG Scores</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Env Score</th>
+                    <th>Soc Score</th>
+                    <th>Gov Score</th>
+                    <th>Overall ESG</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tesla</td>
+                    <td>85</td>
+                    <td>75</td>
+                    <td>90</td>
+                    <td>83</td>
+                    <td><button class="details-btn">View</button></td>
+                </tr>
+                <tr>
+                    <td>Microsoft</td>
+                    <td>80</td>
+                    <td>85</td>
+                    <td>88</td>
+                    <td>84</td>
+                    <td><button class="details-btn">View</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <!-- ESG Score Trends Graph -->
+    <section class="esg-trends">
+        <h2>ESG Trends Over Time</h2>
+        <!-- <canvas id="esgChart"></canvas> -->
+        <img src="esg_trend_plot.png" alt="ESG Trend Over Time" class="esg-trend-image">
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
