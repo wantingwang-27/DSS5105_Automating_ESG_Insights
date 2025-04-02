@@ -1,0 +1,13 @@
+[LOG] 2025-04-01T14:19:20.695Z ✅ ESG API running at http://localhost:3001
+[ERROR] 2025-04-01T14:19:32.831Z ❌ Fetch error: SQLITE_ERROR: no such column: extracted
+[LOG] 2025-04-01T14:19:42.688Z 📥 Incoming POST body: [object Object]
+[ERROR] 2025-04-01T14:19:42.689Z ❌ Insert error: SQLITE_ERROR: table esg_scores has no column named extracted
+[ERROR] 2025-04-01T14:19:51.313Z ❌ Fetch error: SQLITE_ERROR: no such column: extracted
+[LOG] 2025-04-01T14:21:40.323Z ✅ ESG API running at http://localhost:3001
+[LOG] 2025-04-01T14:21:52.671Z 🧹 All ESG data cleared.
+[LOG] 2025-04-01T14:22:02.996Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-01T14:22:13.035Z ✏️ Company updated for ID 15 → Gore
+[LOG] 2025-04-01T14:22:41.626Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-01T14:22:48.892Z ✏️ Company updated for ID 16 → Varo_test
+[LOG] 2025-04-01T14:24:29.303Z 🧹 All ESG data cleared.
+[LOG] 2025-04-01T14:24:38.338Z 📥 Incoming POST body: [object Object]

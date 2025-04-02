@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Analysis Dashboard</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Tom Select -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+    <!-- Font Awesome -->
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+
+    <!-- Load Header -->
+    <!-- <div id="header"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script> -->
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button id="sidebarToggle" class="toggle-btn">
+            ☰
+        </button>
+        <h2>🌍 ESG Dashboard</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="esg-scores.html"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
+            <li><a href="trends.html"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+            <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" id="content">
+        <section class="hero">
+            <h1>Analyze ESG Performance Like Never Before</h1>
+            <p>Explore company ESG scores, trends, and predictions to make informed investment decisions.</p>
+            <button>Start Exploring ESG Data</button>
+        </section>
+
+        <!-- <section class="search-section"> -->
+        <!-- <input type="text" placeholder="🔍 Search for a company"> -->
+        <!-- <select id="companySelect" placeholder="Search for a company...">
+                <option value="">Select from top ESG performers</option>
+                <option>Ørsted A/S</option>
+                <option>Siemens Energy AG</option>
+                <option>Peabody Energy Corporation</option>
+                <option>Cheniere Energy, Inc.</option>
+                <option>Harbour Energy plc</option>
+                <option>LG Energy Solution Ltd.</option>
+                <option>NRG Energy, Inc.</option>
+                <option>Energy Recovery, Inc.</option>
+                <option>Nofar Energy Ltd.</option>
+                <option>New Fortress Energy Inc.</option>
+                <option>Madison Gas and Electric (MGE)</option>
+                <option>Serica Energy plc</option>
+                <option>Canacol Energy Ltd.</option>
+                <option>GS Energy Corporation</option>
+                <option>Chord Energy Corporation</option>
+                <option>TotalEnergies SE</option>
+                <option>Gibson Energy Inc.</option>
+                <option>Constellation Energy Corporation</option>
+                <option>Cenovus Energy Inc.</option>
+            </select> -->
+
+        <!-- </section> -->
+
+        <section class="esg-highlights">
+            <div class="highlight">
+                <h2>🌱</h2>
+                <h3>Environment (E)</h3>
+                <p>Assess companies' climate response, resource use, and pollution control to gauge sustainability
+                    and risk management.</p>
+            </div>
+            <div class="highlight">
+                <h2>🤝</h2>
+                <h3>Social (S)</h3>
+                <p>Evaluate labor rights, community engagement, and social responsibility to reflect stakeholder
+                    commitment.</p>
+            </div>
+            <div class="highlight">
+                <h2>⚖️</h2>
+                <h3>Governance (G)</h3>
+                <p>Examine governance structure, ethics policies, and compliance to ensure transparency and protect
+                    shareholders.</p>
+            </div>
+        </section>
+
+        <section class="methodology">
+            <div class="methodology-header">
+                <h2>Our Methodology</h2>
+                <!-- <button class="see-all">See All</button> -->
+            </div>
+            <div class="chart-and-info">
+                <!-- Chart image -->
+                <div id="chart">
+                    <img src="method.png" alt="Methodology Chart" style="max-width: 70%; height: auto;" />
+                </div>
+
+                <!-- Description text -->
+                <div class="method-details">
+                    <h3>Data collection method</h3>
+                    <ul>
+                        <li>Collection</li>
+                        <li>Audit</li>
+                        <li>Review</li>
+                    </ul>
+                    <p>AI big data real-time capture, timely update of the latest developments</p>
+                    <p>Professional manual collection</p>
+
+                    <h3>8+ Major ESG Data Sources</h3>
+                    <ul>
+                        <li>Regulators (SGX, CDP, GRI, SASB)</li>
+                        <li>Corporate annual ESG reports</li>
+                        <li>News & Media (Bloomberg, Reuters)</li>
+                        <li>Social media data (ESG-related event analysis)</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="esg-rating-scale">
+            <h2>ESG Rating Scale</h2>
+            <div class="rating-scale-boxes">
+                <div class="rating-box ccc">CCC</div>
+                <div class="rating-box b">B</div>
+                <div class="rating-box bb">BB</div>
+                <div class="rating-box bbb">BBB</div>
+                <div class="rating-box a">A</div>
+                <div class="rating-box aa">AA</div>
+                <div class="rating-box aaa">AAA</div>
+            </div>
+            <div class="rating-categories">
+                <div class="category-card laggard">
+                    <h3>LAGGARD</h3>
+                    <p>A company lagging its industry based on its high exposure and failure to manage significant ESG
+                        risks</p>
+                </div>
+                <div class="category-card average">
+                    <h3>AVERAGE</h3>
+                    <p>A company with a mixed or unexceptional track record of managing the most significant ESG risks
+                        and opportunities relative to industry peers</p>
+                </div>
+                <div class="category-card leader">
+                    <h3>LEADER</h3>
+                    <p>A company leading its industry in managing the most significant ESG risks and opportunities</p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2025 ESG Data Dashboard | Contact | Privacy Policy</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script>
+        new TomSelect("#companySelect", {
+            create: false,
+            sortField: {
+                field: "text",
+                direction: "asc"
+            },
+            placeholder: "Search ESG companies..."
+        });
+    </script>
+
+</body>
+
+</html>

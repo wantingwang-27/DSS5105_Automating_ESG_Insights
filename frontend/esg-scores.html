@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESG Scores</title>
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Tom Select CSS & JS -->
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/js/tom-select.complete.min.js"></script>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+
+<body class="esg-scores-page">
+
+    <!-- Load Header from external file -->
+    <!-- <div id="header"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script> -->
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button id="sidebarToggle" class="toggle-btn">☰</button>
+        <h2>🌍 ESG Dashboard</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="esg-scores.html" class="active"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
+            <li><a href="trends.html"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+            <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content" id="content">
+
+        <!-- Hero Section -->
+        <section class="esg-hero">
+            <h1>🌱 ESG Company Scores</h1>
+            <p>View up-to-date Environmental, Social, and Governance (ESG) performance metrics across the energy and
+                sustainability sectors.</p>
+            <p>Use the filter below to find and compare ESG scores across top-performing companies.</p>
+        </section>
+
+
+        <!-- Search Filter -->
+        <section class="search-section">
+            <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                <select id="companySelect" placeholder="Search ESG companies...">
+                    <option value="">Select from top ESG performers</option>
+                </select>
+                <button id="resetFilterBtn" class="reset-btn">Reset</button>
+            </div>
+        </section>
+
+        <!-- ESG Scores Table -->
+        <section class="esg-table">
+            <h2>Company ESG Scores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Company</th>
+                        <th>Environmental Score</th>
+                        <th>Social Score</th>
+                        <th>Governance Score</th>
+                        <th>Overall ESG</th>
+                        <th>Grade</th>
+                    </tr>
+                </thead>
+                <tbody id="esgTableBody">
+                    <!-- ESG rows will be loaded here -->
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>© 2025 ESG Data Dashboard | Contact | Privacy Policy</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/load-esg-table.js"></script>
+    <script src="assets/js/esg-filter.js"></script>
+
+</body>
+
+</html>

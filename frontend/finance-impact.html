@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends - ESG Dashboard</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body class="finance-impact-page">
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button id="sidebarToggle" class="toggle-btn">☰</button>
+        <h2>🌍 ESG Dashboard</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="esg-scores.html"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
+            <li><a href="trends.html" class="active"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+            <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Hero Section -->
+        <section class="esg-hero">
+            <h1>💰 Finance Impact</h1>
+            <p>Understanding the financial correlation with ESG scores across market caps.</p>
+        </section>
+
+        <!-- Internal Navigation -->
+        <nav class="internal-nav">
+            <a href="#correlation-table">🔗 Correlation Table</a>
+            <a href="#esgScatterChart">📈 ESG Chart</a>
+            <a href="#commentary">📝 Commentary</a>
+        </nav>
+
+
+        <!-- ESG Style Table Layout -->
+        <section class="esg-table" id="correlation-table">
+            <h2>📊 Correlation Table with ESG Scores</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Category</th>
+                        <th>Metric</th>
+                        <th>Large Cap Companies</th>
+                        <th>Mid Cap Companies</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Stock Performance</td>
+                        <td>1 Yr Total Returns (%)</td>
+                        <td>-0.09</td>
+                        <td>0.43</td>
+                    </tr>
+                    <tr>
+                        <td>Stock Performance</td>
+                        <td>P/B Ratio</td>
+                        <td>0.17</td>
+                        <td>0.63</td>
+                    </tr>
+                    <tr>
+                        <td>Stock Performance</td>
+                        <td>Market Capitalisation</td>
+                        <td>0.05</td>
+                        <td>-0.43</td>
+                    </tr>
+                    <tr>
+                        <td>Volatility</td>
+                        <td>Beta</td>
+                        <td>0.27</td>
+                        <td>-0.19</td>
+                    </tr>
+                    <tr>
+                        <td>Volatility</td>
+                        <td>Maximum Drawdown</td>
+                        <td>0.08</td>
+                        <td>0.82</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Risk</td>
+                        <td>D/E Ratio</td>
+                        <td>-0.17</td>
+                        <td>-0.12</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Risk</td>
+                        <td>Interest Coverage Ratio</td>
+                        <td>0.65</td>
+                        <td>-0.48</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Risk</td>
+                        <td>Altman Z-Score</td>
+                        <td>0.74</td>
+                        <td>0.07</td>
+                    </tr>
+                    <tr>
+                        <td>Financial Risk</td>
+                        <td>Asset Liability Ratio</td>
+                        <td>-0.54</td>
+                        <td>-0.02</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="financial-commentary" id="commentary">
+            <h2>📝 Commentary on Financial Analysis</h2>
+
+            <details>
+                <summary><strong>🧾 Summary</strong></summary>
+                <p>Analysis indicates that ESG scores correlate differently with financial metrics in large-cap and
+                    mid-cap companies. Mid-cap firms tend to experience stronger positive relationships between ESG
+                    scores and valuation metrics, while large-cap companies benefit more from financial stability and
+                    risk mitigation. However, external factors such as political shifts—particularly the 2024 U.S.
+                    presidential election—may have introduced additional challenges for ESG-focused firms, particularly
+                    in the large-cap segment.</p>
+            </details>
+
+            <details>
+                <summary><strong>📈 Stock Performance</strong></summary>
+                <p><strong>1-Year Total Returns:</strong><br>
+                    Large-cap companies show a slightly negative correlation (-0.09) between ESG scores and 1-year
+                    returns, whereas mid-caps show a strong positive one (0.43). This may reflect policy shifts
+                    following the 2024 U.S. election.</p>
+
+                <p><strong>P/B Ratio:</strong><br>
+                    Correlation is modestly positive for large caps (0.17) and much stronger for mid-caps (0.63),
+                    suggesting greater ESG influence on mid-cap valuation.</p>
+            </details>
+
+            <details>
+                <summary><strong>📉 Volatility</strong></summary>
+                <p><strong>Beta:</strong><br>
+                    ESG scores correlate positively with beta (0.27) in large caps, but negatively (-0.19) in mid-caps,
+                    suggesting ESG may reduce volatility in mid-caps.</p>
+
+                <p><strong>Maximum Drawdown:</strong><br>
+                    Mid-cap companies show a strong positive correlation (0.82), meaning ESG may not protect them in
+                    downturns, unlike large caps (0.08).</p>
+            </details>
+
+            <details>
+                <summary><strong>🏦 Financial Risk</strong></summary>
+                <p><strong>D/E Ratio:</strong><br>
+                    Negative correlations for both segments (large cap: -0.17, mid cap: -0.12) imply ESG-conscious
+                    companies generally take on less debt.</p>
+
+                <p><strong>Interest Coverage Ratio:</strong><br>
+                    Large caps show a strong positive correlation (0.65), but mid-caps are negative (-0.48), hinting at
+                    weaker financial flexibility.</p>
+
+                <p><strong>Altman Z-score:</strong><br>
+                    Strong for large caps (0.74), but weak for mid-caps (0.07), indicating ESG stability may be more
+                    prominent in large firms.</p>
+
+                <p><strong>Asset Liability Ratio:</strong><br>
+                    Negative in both groups (large cap: -0.54, mid cap: -0.02), but more pronounced in large caps,
+                    showing healthier balance sheets with high ESG.</p>
+            </details>
+        </section>
+
+
+
+        <!-- Dynamic ESG Correlation Chart -->
+        <section class="financial-chart">
+            <h2>📈 ESG Correlation Chart</h2>
+
+            <div style="margin-bottom: 20px;">
+                <label for="metricSelect"><strong>Select Financial Metric:</strong></label>
+                <select id="metricSelect">
+                    <option value="returns">1 Yr Total Returns (%)</option>
+                    <option value="beta">Beta</option>
+                    <option value="de_ratio">D/E Ratio</option>
+                    <option value="max_drawdown">Maximum Drawdown</option>
+                    <option value="altman">Altman Z-Score</option>
+                    <option value="alr">Asset Liability Ratio</option>
+                </select>
+            </div>
+
+            <canvas id="esgScatterChart" width="600" height="350"></canvas>
+        </section>
+
+
+        <footer>
+            <p>© 2025 ESG Data Dashboard | Contact | Privacy Policy</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="assets/js/main.js"></script>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/regression@2.0.1/dist/regression.min.js"></script>
+
+
+    <!-- Your Custom Chart Script -->
+    <script src="assets/js/finance-impact-chart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-trendline"></script>
+
+
+
+</body>
+
+</html>

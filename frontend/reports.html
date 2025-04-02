@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trends - ESG Dashboard</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+    <!-- Load Chart.js (required for any charts) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Load PDF.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+
+
+</head>
+
+<body>
+
+    <!-- Load Header -->
+    <!-- <div id="header"></div>
+    <script>
+        fetch("header.html")
+            .then(response => response.text())
+            .then(data => document.getElementById("header").innerHTML = data);
+    </script> -->
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button id="sidebarToggle" class="toggle-btn">☰</button>
+        <h2>🌍 ESG Dashboard</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="esg-scores.html"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
+            <li><a href="trends.html" class="active"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+            <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>📊 ESG Reports</h1>
+
+        <!-- PDF Upload Section -->
+        <section class="pdf-upload">
+            <h2>📤 Upload ESG Report (PDF)</h2>
+            <input type="file" id="pdfUpload" accept="application/pdf">
+            <button id="analyzePDFBtn">Analyze PDF</button>
+        </section>
+
+
+        <!-- ESG Summary Table -->
+        <h2>🌍 ESG Summary Report</h2>
+        <table class="esg-table">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Environmental</th>
+                    <th>Social</th>
+                    <th>Governance</th>
+                    <th>Overall ESG Score</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+
+            <tbody id="esgReportBody">
+
+            </tbody>
+        </table>
+
+        <section class="reset-section">
+            <button id="resetESGBtn" class="reset-btn">🧹 Reset ESG Data</button>
+        </section>
+
+
+        <section class="chart-container-report">
+            <h2>📊 Extracted vs Predicted ESG Comparison</h2>
+            <canvas id="esgComparisonChart"></canvas>
+        </section>
+
+
+        <section class="chart-container-report">
+            <h2>📈 ESG Score Distribution</h2>
+            <canvas id="esgDistributionChart"></canvas>
+        </section>
+
+        <section class="chart-container-report">
+            <h2>🏭 Industry ESG Performance</h2>
+            <canvas id="industryComparisonChart"></canvas>
+        </section>
+
+        <section class="financial-insight-link">
+            <p><strong>💡 Want to see how ESG impacts financial performance?</strong><br>
+                <a href="finance-impact.html#commentary">📘 Read the Financial Commentary</a>
+            </p>
+        </section>
+
+
+
+
+    </div>
+
+    <script src="assets/js/main.js">
+        // ESG Score Distribution Chart
+        const ctx1 = document.getElementById('esgDistributionChart').getContext('2d');
+        new Chart(ctx1, {
+            type: 'bar',
+            data: {
+                labels: ["Ørsted A/S", "Siemens Energy AG", "Peabody Energy"],
+                datasets: [{
+                    label: "ESG Score",
+                    data: [85, 79, 62],
+                    backgroundColor: ["#1a73e8", "#27ae60", "#f39c12"]
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Industry Comparison Chart
+        const ctx2 = document.getElementById('industryComparisonChart').getContext('2d');
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ["Renewable Energy", "Oil & Gas", "Coal"],
+                datasets: [{
+                    data: [85, 72, 60],
+                    backgroundColor: ["#2ECC71", "#F39C12", "#E74C3C"]
+                }]
+            },
+            options: { responsive: true }
+        });
+
+        // Function to Download ESG Report
+        function downloadReport() {
+            const csvContent = "data:text/csv;charset=utf-8," +
+                "Company,Environmental Score,Social Score,Governance Score,Overall ESG Score\n" +
+                "Ørsted A/S,85,82,87,85\n" +
+                "Siemens Energy AG,80,78,79,79\n" +
+                "Peabody Energy Corporation,60,62,65,62";
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", "esg_report.csv");
+            document.body.appendChild(link);
+            link.click();
+        }
+    </script>
+    <!-- Load ESG report chart logic -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/esg-reports.js"></script>
+    <!-- Load ESG Upload Logic (MODULAR) -->
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">✅ ESG report analyzed and added!</div>
+
+    <!-- Load ESG upload logic as a module -->
+    <script type="module" src="assets/js/esg-uploader.js"></script>
+
+
+
+</body>
+
+</html>

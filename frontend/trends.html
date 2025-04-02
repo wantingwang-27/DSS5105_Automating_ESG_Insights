@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESG Trends</title>
+    <link rel="stylesheet" href="assets/css/styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button id="sidebarToggle" class="toggle-btn">☰</button>
+        <h2>🌍 ESG Dashboard</h2>
+        <ul class="sidebar-menu">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="esg-scores.html"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
+            <li><a href="trends.html" class="active"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
+            <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h1>📈 ESG Trends Over Time</h1>
+
+        <div class="trend-controls">
+            <!-- Company Selection Dropdown -->
+            <label for="companySelect">Select Companies:</label>
+            <select id="companySelect" multiple>
+                <!-- Options will be added dynamically via JavaScript -->
+            </select>
+            <button id="updateChart">Update Chart</button>
+        </div>
+
+        <!-- ESG Trends Chart -->
+        <div class="chart-container" style="margin-top: 30px;">
+            <canvas id="esgTrendChart" width="800" height="400"></canvas>
+        </div>
+    </div>
+
+    <!-- Load shared JS logic and chart rendering -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+    <script src="assets/js/esgChart.js"></script>
+    <script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
