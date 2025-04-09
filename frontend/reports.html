@@ -8,17 +8,19 @@
 
     <!-- Link to external CSS -->
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
 
     <!-- Load Chart.js (required for any charts) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <!-- Load PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script> -->
 
 
 </head>
 
-<body>
+<body class="esg-scores-page">
 
     <!-- Load Header -->
     <!-- <div id="header"></div>
@@ -35,8 +37,9 @@
         <ul class="sidebar-menu">
             <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
             <li><a href="esg-scores.html"><i class="fas fa-chart-bar"></i> ESG Scores</a></li>
-            <li><a href="trends.html" class="active"><i class="fas fa-line-chart"></i> Trends</a></li>
-            <li><a href="reports.html"><i class="fas fa-file-alt"></i> Reports</a></li>
+            <li><a href="trends.html"><i class="fas fa-line-chart"></i> Trends</a></li>
+            <li><a href="reports.html" class="active"><i class="fas fa-file-alt"></i> Reports</a></li>
+
             <li><a href="ai-forecast.html"><i class="fas fa-brain"></i> AI Forecast</a></li>
             <li><a href="finance-impact.html"><i class="fas fa-money-bill-wave"></i> Finance Impact</a></li>
         </ul>
@@ -55,28 +58,49 @@
 
 
         <!-- ESG Summary Table -->
-        <h2>🌍 ESG Summary Report</h2>
-        <table class="esg-table">
-            <thead>
-                <tr>
-                    <th>Company</th>
-                    <th>Environmental</th>
-                    <th>Social</th>
-                    <th>Governance</th>
-                    <th>Overall ESG Score</th>
-                    <th>Grade</th>
-                </tr>
-            </thead>
-
-            <tbody id="esgReportBody">
-
-            </tbody>
-        </table>
-
-        <section class="reset-section">
-            <button id="resetESGBtn" class="reset-btn">🧹 Reset ESG Data</button>
+        <section class="chart-container-report">
+            <h2>🌍 ESG Summary Report</h2>
+            <div class="esg-table-wrapper">
+                <table class="esg-table">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Environmental</th>
+                            <th>Social</th>
+                            <th>Governance</th>
+                            <th>Overall ESG Score</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="esgReportBody"></tbody>
+                </table>
+            </div>
         </section>
 
+
+        <!-- ⬇️ Insert GPT Insights block right here -->
+        <!-- <section id="gpt-esg-section" class="gpt-insight-box">
+            <h2>🧠 GPT-Powered ESG Insights</h2>
+            <div id="gptEnvironmental"></div>
+            <div id="gptSocial"></div>
+            <div id="gptGovernance"></div>
+            <div id="gptOverall"></div>
+        </section> -->
+        <section id="gpt-esg-section">
+            <h2>🧠 LLM-Powered ESG Insights</h2>
+            <div class="gpt-insight-box" id="gptInsightCards"></div>
+        </section>
+
+        <div id="gptLoader" style="display:none; text-align:center;">
+            <p>Generating insights...</p>
+            <div class="spinner"></div>
+        </div>
+
+        <section class="reset-section">
+            <div class="center-reset">
+                <button id="resetESGBtn" class="reset-btn">🧹 Reset ESG Data</button>
+            </div>
+        </section>
 
         <section class="chart-container-report">
             <h2>📊 Extracted vs Predicted ESG Comparison</h2>
@@ -87,11 +111,14 @@
         <section class="chart-container-report">
             <h2>📈 ESG Score Distribution</h2>
             <canvas id="esgDistributionChart"></canvas>
+            <div id="esgLegendContainer"></div>
         </section>
 
         <section class="chart-container-report">
             <h2>🏭 Industry ESG Performance</h2>
-            <canvas id="industryComparisonChart"></canvas>
+            <div class="chart-wrapper">
+                <canvas id="industryComparisonChart" width="500" height="400"></canvas>
+            </div>
         </section>
 
         <section class="financial-insight-link">
@@ -157,10 +184,11 @@
     <!-- Load ESG Upload Logic (MODULAR) -->
     <!-- Toast Notification -->
     <div id="toast" class="toast">✅ ESG report analyzed and added!</div>
+    <!-- ✅ Load PDF.js the classic way -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 
-    <!-- Load ESG upload logic as a module -->
-    <script type="module" src="assets/js/esg-uploader.js"></script>
-
+    <!-- ✅ Load your uploader logic -->
+    <script src="assets/js/esg-uploader.js"></script>
 
 
 </body>

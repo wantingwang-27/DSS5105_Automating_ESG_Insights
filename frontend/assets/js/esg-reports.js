@@ -6,15 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
         return isNaN(num) ? "-" : num.toFixed(2);
     }
 
-    // Tier-based color map
     const gradeColors = {
-        "A": "#2ECC71",       // Green for strong ESG
-        "B": "#F39C12",       // Orange for mid-tier
-        "C": "#E74C3C",       // Red for weak ESG
-        "UNKNOWN": "#95A5A6"  // Gray fallback
+        "A": "#2ECC71",
+        "B": "#F39C12",
+        "C": "#E74C3C",
+        "UNKNOWN": "#95A5A6"
     };
 
-    // Helper: simplify grade to tier
     function gradeGroup(rawGrade) {
         if (!rawGrade) return "UNKNOWN";
         const grade = rawGrade.trim().toUpperCase();
@@ -24,7 +22,6 @@ document.addEventListener("DOMContentLoaded", function () {
         return "UNKNOWN";
     }
 
-    // Optional: Add visual legend below chart
     const legendContainer = document.createElement("div");
     legendContainer.style.marginTop = "20px";
     legendContainer.innerHTML = `
@@ -47,21 +44,26 @@ document.addEventListener("DOMContentLoaded", function () {
                 complete: function (results) {
                     const data = results.data;
 
-                    // Populate table
+                    // Populate ESG table
                     data.forEach(row => {
                         const tr = document.createElement("tr");
+
+                        const gradeTier = gradeGroup(row.Grade);
+                        const gradeClass = `esg-grade-${gradeTier.toLowerCase()}`;
+                        const gradeHTML = `<span class="${gradeClass}">${row.Grade || '-'}</span>`;
+
                         tr.innerHTML = `
                             <td>${row.Company}</td>
                             <td>${formatScore(row.E_score)}</td>
                             <td>${formatScore(row.S_score)}</td>
                             <td>${formatScore(row.G_score)}</td>
                             <td>${formatScore(row.ESG_score)}</td>
-                            <td>${row.Grade || "-"}</td>
+                            <td>${gradeHTML}</td>
                         `;
                         reportBody.appendChild(tr);
                     });
 
-                    // ESG Distribution Chart (Top 6 companies)
+                    // ESG Distribution Chart
                     const topCompanies = data.slice(0, 6);
                     const labels = topCompanies.map(r => r.Company);
                     const scores = topCompanies.map(r => parseFloat(r.ESG_score));
@@ -115,10 +117,10 @@ document.addEventListener("DOMContentLoaded", function () {
                         }
                     });
 
-                    // Add the legend to page
-                    document.querySelector(".main-content").appendChild(legendContainer);
+                    // Add legend
+                    document.getElementById("esgLegendContainer").appendChild(legendContainer);
 
-                    // Sample Industry Chart (placeholder)
+                    // Industry ESG Chart
                     const industries = {
                         "Renewable Energy": 5,
                         "Oil & Gas": 3,
@@ -137,6 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         },
                         options: {
                             responsive: true,
+                            maintainAspectRatio: true,
                             plugins: {
                                 title: {
                                     display: true,

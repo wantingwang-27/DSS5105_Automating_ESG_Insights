@@ -1,12 +1,19 @@
 const API_BASE = 'http://localhost:3001';
 const MODEL_API = 'http://localhost:5050';
 
+// PDF.js setup
+if (window.pdfjsLib) {
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js';
+    console.log("✅ PDF.js workerSrc set successfully");
+} else {
+    console.error("❌ pdfjsLib not found. Make sure pdf.min.js is loaded before this script.");
+}
+
 let esgComparisonChart;
 const chartLabels = [];
 const extractedScores = [];
 const predictedScores = [];
 
-// ✅ Ensure toast is defined before used
 function showToast(message) {
     const toast = document.getElementById('toast');
     if (!toast) return;
@@ -33,9 +40,39 @@ function setupPDFUpload() {
         showToast("⏳ Reading PDF...");
         const text = await extractPDFText(file);
         const company = extractCompanyName(text);
-        const scores = analyzeESGText(text);
+        // const scores = analyzeESGText(text);
 
-        // 🔮 Predict ESG score from ML model
+        let gptData;
+        try {
+            const res = await fetch(`${MODEL_API}/gpt_esg_score`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ text })
+            });
+
+            gptData = await res.json();
+            displayGPTESGInsights(gptData);
+            console.log("🧠 GPT Response:", gptData);
+        } catch (err) {
+            console.error("❌ GPT scoring failed:", err);
+            showToast("⚠️ GPT ESG insight unavailable.");
+            return; // stop here if GPT fails
+        }
+
+        // ✅ use GPT values for table and backend
+        const scores = {
+            e: gptData?.Environmental?.score || 0,
+            s: gptData?.Social?.score || 0,
+            g: gptData?.Governance?.score || 0,
+            overall: gptData?.Overall || 0
+        };
+        // ✅ Recalculate overall ESG from E/S/G
+        scores.extracted = (scores.e + scores.s + scores.g) / 3;
+        scores.predicted = scores.extracted; // model can override this below
+        scores.grade = getESGGrade(scores.extracted);
+
+
+
         const predictedOverall = await getPredictedESGScore({
             emissions: scores.e,
             carbon: scores.e,
@@ -59,19 +96,21 @@ function setupPDFUpload() {
                     e: scores.e,
                     s: scores.s,
                     g: scores.g,
-                    overall: predictedOverall,      // or scores.overall
+                    overall: predictedOverall,
                     extracted: scores.extracted,
                     predicted: scores.predicted,
-                    grade: scores.grade
+                    grade: scores.grade,
+                    gpt_environmental_insight: gptData?.Environmental?.insight || null,
+                    gpt_social_insight: gptData?.Social?.insight || null,
+                    gpt_governance_insight: gptData?.Governance?.insight || null,
+                    gpt_overall_score: gptData?.Overall || null
                 })
-
             });
 
             const data = await res.json();
             scores.id = data.id;
             insertTableRow({ id: data.id, company, ...scores });
 
-            // Add to chart
             chartLabels.push(company);
             extractedScores.push(extracted);
             predictedScores.push(predictedOverall);
@@ -83,22 +122,6 @@ function setupPDFUpload() {
             showToast("❌ Failed to save ESG report.");
         }
     });
-}
-
-async function getPredictedESGScore(keywords) {
-    try {
-        const res = await fetch(`${MODEL_API}/predict`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(keywords)
-        });
-
-        const data = await res.json();
-        return data.predicted_overall;
-    } catch (err) {
-        console.error("❌ Prediction failed:", err);
-        return 0;
-    }
 }
 
 async function extractPDFText(file) {
@@ -113,6 +136,7 @@ async function extractPDFText(file) {
         fullText += strings.join(' ') + '\n';
     }
 
+    console.log("📄 Extracted Text (500 chars):", fullText.slice(0, 500));
     return fullText;
 }
 
@@ -170,10 +194,28 @@ function getESGGrade(score) {
     return "D";
 }
 
-function insertTableRow({ id, company, e, s, g, predicted, grade }) {
+async function getPredictedESGScore(keywords) {
+    try {
+        const res = await fetch(`${MODEL_API}/predict`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(keywords)
+        });
+
+        const data = await res.json();
+        return data.predicted_overall;
+    } catch (err) {
+        console.error("❌ Prediction failed:", err);
+        return 0;
+    }
+}
+
+function insertTableRow({ id, company, e, s, g, extracted }) {
     const tbody = document.getElementById("esgReportBody");
     const row = document.createElement('tr');
     if (id) row.dataset.id = id;
+
+    const grade = getESGGrade(extracted);
 
     const nameCell = document.createElement('td');
     nameCell.innerText = company;
@@ -196,7 +238,7 @@ function insertTableRow({ id, company, e, s, g, predicted, grade }) {
     });
     row.appendChild(nameCell);
 
-    [e, s, g, predicted, grade].forEach(val => {
+    [e, s, g, extracted.toFixed(2), grade].forEach(val => {
         const cell = document.createElement('td');
         cell.textContent = val;
         row.appendChild(cell);
@@ -204,6 +246,43 @@ function insertTableRow({ id, company, e, s, g, predicted, grade }) {
 
     tbody.appendChild(row);
 }
+
+
+// function insertTableRow({ id, company, e, s, g, extracted, predicted, grade }) {
+//     const tbody = document.getElementById("esgReportBody");
+//     const row = document.createElement('tr');
+//     if (id) row.dataset.id = id;
+
+//     const nameCell = document.createElement('td');
+//     nameCell.innerText = company;
+//     nameCell.contentEditable = true;
+//     nameCell.title = "Click to edit company name";
+//     nameCell.addEventListener('blur', async () => {
+//         const newName = nameCell.innerText.trim();
+//         if (!newName || !id) return;
+//         try {
+//             const res = await fetch(`${API_BASE}/api/esg/${id}`, {
+//                 method: "PATCH",
+//                 headers: { "Content-Type": "application/json" },
+//                 body: JSON.stringify({ company: newName })
+//             });
+//             if (!res.ok) throw new Error();
+//             showToast("✅ Company name updated.");
+//         } catch {
+//             showToast("❌ Failed to update company.");
+//         }
+//     });
+//     row.appendChild(nameCell);
+
+//     // Inject the ESG values into columns
+//     [e, s, g, extracted.toFixed(2), grade].forEach(val => {
+//         const cell = document.createElement('td');
+//         cell.textContent = val;
+//         row.appendChild(cell);
+//     });
+
+//     tbody.appendChild(row);
+// }
 
 function loadESGFromServer() {
     fetch(`${API_BASE}/api/esg`)
@@ -213,7 +292,6 @@ function loadESGFromServer() {
                 row.extracted = row.extracted ?? row.overall;
                 row.predicted = row.predicted ?? row.overall;
                 insertTableRow(row);
-
                 chartLabels.push(row.company);
                 extractedScores.push(row.extracted);
                 predictedScores.push(row.predicted);
@@ -232,31 +310,18 @@ function updateESGComparisonChart() {
         data: {
             labels: chartLabels,
             datasets: [
-                {
-                    label: 'Extracted ESG',
-                    data: extractedScores,
-                    backgroundColor: 'rgba(100, 100, 255, 0.7)'
-                },
-                {
-                    label: 'Predicted ESG',
-                    data: predictedScores,
-                    backgroundColor: 'rgba(255, 165, 0, 0.7)'
-                }
+                { label: 'Extracted ESG', data: extractedScores, backgroundColor: 'rgba(100, 100, 255, 0.7)' },
+                { label: 'Predicted ESG', data: predictedScores, backgroundColor: 'rgba(255, 165, 0, 0.7)' }
             ]
         },
         options: {
             responsive: true,
-            plugins: {
-                legend: { position: 'top' }
-            },
+            plugins: { legend: { position: 'top' } },
             scales: {
                 y: {
                     beginAtZero: true,
                     max: 100,
-                    title: {
-                        display: true,
-                        text: 'ESG Score'
-                    }
+                    title: { display: true, text: 'ESG Score' }
                 }
             }
         }
@@ -266,17 +331,12 @@ function updateESGComparisonChart() {
 function setupResetButton() {
     const resetBtn = document.getElementById('resetESGBtn');
     if (!resetBtn) return;
-
     resetBtn.addEventListener('click', async () => {
         if (!confirm("⚠️ Are you sure you want to delete all ESG data?")) return;
 
         try {
-            const res = await fetch(`${API_BASE}/api/esg`, {
-                method: 'DELETE'
-            });
-
+            const res = await fetch(`${API_BASE}/api/esg`, { method: 'DELETE' });
             if (!res.ok) throw new Error("Server error");
-
             await res.json();
             document.getElementById("esgReportBody").innerHTML = '';
             chartLabels.length = 0;
@@ -290,3 +350,43 @@ function setupResetButton() {
         }
     });
 }
+
+function displayGPTESGInsights(data) {
+    const getBadgeClass = (score) => {
+        if (score >= 80) return "badge success";
+        if (score >= 60) return "badge warning";
+        return "badge danger";
+    };
+
+    const container = document.getElementById("gptInsightCards");
+    container.innerHTML = `
+      <div class="gpt-card">
+        <h3>🌿 Environmental 
+          <span class="${getBadgeClass(data.Environmental.score)}">${data.Environmental.score}</span>
+        </h3>
+        <p>${data.Environmental.insight}</p>
+      </div>
+  
+      <div class="gpt-card">
+        <h3>🤝 Social 
+          <span class="${getBadgeClass(data.Social.score)}">${data.Social.score}</span>
+        </h3>
+        <p>${data.Social.insight}</p>
+      </div>
+  
+      <div class="gpt-card">
+        <h3>🏛 Governance 
+          <span class="${getBadgeClass(data.Governance.score)}">${data.Governance.score}</span>
+        </h3>
+        <p>${data.Governance.insight}</p>
+      </div>
+  
+      <div class="gpt-card" style="flex-basis: 100%;">
+        <h3>📊 Overall ESG Score 
+          <span class="${getBadgeClass(data.Overall)}">${data.Overall}</span>
+        </h3>
+        <p>This is the AI-generated holistic ESG assessment based on the uploaded report.</p>
+      </div>
+    `;
+}
+

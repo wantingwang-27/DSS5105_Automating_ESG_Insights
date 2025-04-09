@@ -1,3 +1,47 @@
 [LOG] 2025-04-01T14:25:27.561Z ✅ ESG API running at http://localhost:3001
 [LOG] 2025-04-01T14:25:42.709Z 📥 Incoming POST body: [object Object]
 [LOG] 2025-04-01T14:25:51.096Z ✏️ Company updated for ID 18 → Varo_Test
+[LOG] 2025-04-02T16:15:29.792Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T16:15:39.595Z ✏️ Company updated for ID 19 → Varo_test_two
+[LOG] 2025-04-02T17:06:51.686Z ✏️ Company updated for ID 19 → Varo_test_three
+[LOG] 2025-04-02T17:30:45.352Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:31:46.106Z 🧹 All ESG data cleared.
+[LOG] 2025-04-02T17:31:59.356Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:32:06.746Z ✏️ Company updated for ID 21 → Varo Test
+[LOG] 2025-04-02T17:33:52.006Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:37:51.163Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:43:05.740Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:43:34.061Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:44:53.887Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:46:55.804Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:47:25.786Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:47:32.297Z ✏️ Company updated for ID 28 → test
+[LOG] 2025-04-02T17:49:44.554Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T17:52:20.010Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T18:02:49.905Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T18:03:01.991Z ✏️ Company updated for ID 31 → Gore Test
+[LOG] 2025-04-02T18:03:06.265Z 🧹 All ESG data cleared.
+[LOG] 2025-04-02T18:04:42.575Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T18:04:49.184Z ✏️ Company updated for ID 32 → Gore
+[LOG] 2025-04-02T18:08:29.104Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T18:09:03.019Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-02T18:09:18.443Z 🧹 All ESG data cleared.
+[LOG] 2025-04-03T05:23:45.580Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T05:27:19.012Z ✏️ Company updated for ID 35 → Varo Test
+[LOG] 2025-04-03T05:44:36.758Z 🧹 All ESG data cleared.
+[LOG] 2025-04-03T05:50:32.289Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T05:50:47.087Z ✏️ Company updated for ID 36 → Gore Test
+[LOG] 2025-04-03T05:51:06.119Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T05:51:16.197Z ✏️ Company updated for ID 37 → Varo test
+[LOG] 2025-04-03T05:58:21.079Z 🧹 All ESG data cleared.
+[LOG] 2025-04-03T05:58:34.432Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T05:58:49.182Z ✏️ Company updated for ID 38 → Gore test
+[LOG] 2025-04-03T06:49:07.357Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T06:49:22.650Z 🧹 All ESG data cleared.
+[LOG] 2025-04-03T06:54:14.344Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T11:11:09.857Z ✏️ Company updated for ID 40 → Gore_test
+[LOG] 2025-04-03T11:21:05.875Z ✏️ Company updated for ID 40 → Gore_test_1
+[LOG] 2025-04-03T12:00:03.189Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T12:00:14.218Z ✏️ Company updated for ID 41 → Gore_test
+[LOG] 2025-04-03T12:55:51.117Z 📥 Incoming POST body: [object Object]
+[LOG] 2025-04-03T13:01:49.489Z 📥 Incoming POST body: [object Object]

@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             sidebar.classList.toggle("collapsed");
 
             if (sidebar.classList.contains("collapsed")) {
-                toggleButton.style.left = "10.5px";
+                toggleButton.style.left = "24.5px";
                 sidebarTitle.style.opacity = "0";
             } else {
                 toggleButton.style.left = "100px";
