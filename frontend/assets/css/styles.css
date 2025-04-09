@@ -1354,3 +1354,19 @@ footer {
     justify-content: center;
     margin-top: 20px;
 }
+
+.button-link {
+    background-color: #facc15;
+    color: #1f2937;
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.button-link:hover {
+    background-color: #eab308;
+    transform: scale(1.03);
+}
