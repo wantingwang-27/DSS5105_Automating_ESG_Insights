@@ -298,7 +298,7 @@ Can now access the AI assistant at:
 |------------|------------------------|----------------------------------------------------------------|
 | `8000`     | Frontend (Python `http.server`) | Serves the ESG Dashboard UI via `index.html`              |
 | `3001`     | Node.js Server (`server.js`)     | Serves static frontend files and handles proxy routing     |
-| `5000`     | Python API (`model_api.py`)      | Flask server exposing ESG ML prediction endpoints          |
+| `5050`     | Python API (`model_api.py`)      | Flask server exposing ESG ML prediction endpoints          |
 | `3000`     | Open WebUI (Docker)             | Accessible AI assistant interface connected to Ollama      |
 | `8080`     | Internal WebUI port (Docker)    | Internal port inside the container, mapped to host `3000`  |
 | `11434`    | Ollama                          | Local Ollama model API (used by Open WebUI)                |
