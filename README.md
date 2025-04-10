@@ -245,7 +245,8 @@ Visit
 http://localhost:8000
 ```
 This will open your dashboard homepage
-    ✅ Make sure both backend servers (Node + Python) are running before accessing the dashboard for full functionality.
+    
+✅ Make sure both backend servers (Node + Python) are running before accessing the dashboard for full functionality.
 
 ---
 
